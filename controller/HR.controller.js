@@ -9,7 +9,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 ], function (Controller, Formatter, MessageBox, ExportCSV, Export, Fragment, Filter, JSONModel) {
 	"use strict";
-    // HR Controller
+    // HR Controller...
 	return Controller.extend("painelControle.controller.HR", {
 
 		onInit: function (oEvent) {
