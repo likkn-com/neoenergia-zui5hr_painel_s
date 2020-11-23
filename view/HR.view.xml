@@ -1,0 +1,433 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:t="sap.ui.table" controllerName="painelControle.controller.HR" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<App id="app">
+		<pages>
+			<Page class="sapUiContentPadding" busyIndicatorDelay="10000" busy="false" id="pageHR">
+				<customHeader>
+					<Toolbar>
+						<Title text="{i18n>painel}" level="H2" textAlign="Center" width="100%"/>
+					</Toolbar>
+				</customHeader>
+				<subHeader>
+					<Toolbar>
+						<Button text="Procurar" press="onProcessSearch" icon="sap-icon://search" class="sapUiSmallMargin" id="btnSearch"/>
+					</Toolbar>
+				</subHeader>
+				<content>
+					<!--PROCESS DATA-->
+					<VBox class="sapUiSmallMargin">
+						<f:Form id="FormProcData" editable="true">
+							<f:title>
+								<core:Title text="{i18n>dados_proc}"/>
+							</f:title>
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanL="3" labelSpanM="3" emptySpanL="3" emptySpanM="3" columnsL="1" columnsM="1"/>
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer>
+									<f:formElements>
+										<f:FormElement label="{i18n>num_req}">
+											<f:fields>
+												<Input value="{}" id="inRequisitionNumber" width="50%" maxLength="8" change="onReqNumberChange"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+									<!--<f:FormElement label="{i18n>processo}">-->
+									<!--	<f:fields>-->
+									<!--		<Select width="50%" id="slProcessType" selectedKey="{}">-->
+									<!--			<items>-->
+													<!--<core:Item text="{i18n>todos}" key="000"/>-->
+													<!--<core:Item text="{i18n>alt_fun}" key="200"/>-->
+									<!--				<core:Item text="{i18n>man_cad}" key="100"/>-->
+													<!--<core:Item text="{i18n>obj_est_org}" key="300"/>-->
+									<!--			</items>-->
+									<!--		</Select>-->
+									<!--	</f:fields>-->
+									<!--</f:FormElement>-->
+									<f:FormElement label="SubProcesso">
+										<f:fields>
+											<Select width="50%" id="slProcessSubType" selectedKey="{}">
+												<items>
+													<core:Item text="Todos" key=""/>
+													<core:Item text="Endereços e Telefones" key="105"/>
+													<core:Item text="Dependentes" key="103"/>
+													<!--<core:Item text="Ausências" key="107"/>-->
+													<core:Item text="Dados Pessoais" key="102"/>
+													<core:Item text="Documentos" key="104"/>
+													<core:Item text="Formação Escolar" key="106"/>
+													<core:Item text="Dados Bancários" key="101"/>
+													<core:Item text="Aposentadoria" key="111"/>
+													<core:Item text="Vale-Transporte" key="113"/>
+													<core:Item text="Plano de Saúde" key="114"/>
+													<!--<core:Item text="Sindicatos" key="108"/>-->
+													<!--<core:Item text="Benefícios" key="109"/>-->
+													<!--<core:Item text="Deficiência" key="110"/>-->
+													<!--<core:Item text="Estabilidade" key="112"/>-->
+													
+													<core:Item text="Seguro de Vida" key="115"/>
+													<core:Item text="Vale Refeição" key="116"/>
+													<core:Item text="Auxílio Saúde" key="117"/>
+													<core:Item text="Empréstimo Emergencial" key="121"/>
+													<core:Item text="Financiamento de Veículos" key="122"/>
+													<core:Item text="Empréstimo Consignado" key="123"/>
+													<core:Item text="Previdência Privada" key="124"/>
+													<core:Item text="Incentivo Educacional" key="126"/>
+													<core:Item text="Auxílio Dependentes" key="127"/>
+													<core:Item text="Plano Odontológico" key="128"/>
+													<core:Item text="Auxílio Saúde - Dependentes" key="125"/>
+													<!--<core:Item text="Associação Esportiva" key="118"/>-->
+													<!--<core:Item text="Transporte Fretado" key="119"/>-->
+													<!--<core:Item text="Cooperativa" key="120"/>-->
+												</items>
+											</Select>
+										</f:fields>
+									</f:FormElement>
+									<f:formElements>
+										<f:FormElement label="Área Recursos Humanos">
+											<f:fields>
+												<Input value="{ET_SH_ARH>/WERKS}" width="50%" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp" id="inARH"
+													app:fragment="painelControle.view.SHHR_AREA"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+									<!--<f:formElements>-->
+									<!--	<f:FormElement label="Unidade Organizacional">-->
+									<!--		<f:fields>-->
+									<!--			<Input value="{ET_SH_UO>/ORGEH}" width="50%" showSuggestion="true" showValueHelp="true" valueHelpRequest="handleValueHelp" id="inOrg"-->
+									<!--				app:fragment="painelControle.view.SHUO"/>-->
+									<!--		</f:fields>-->
+									<!--	</f:FormElement>-->
+									<!--</f:formElements>-->
+									<f:formElements>
+										<f:FormElement label="Data Início">
+											<f:fields>
+												<DatePicker id="inBegda" width="50%" placeholder=" " valueFormat="YYYY-MM-ddT00:00:00"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+									<f:formElements>
+										<f:FormElement label="Data Fim">
+											<f:fields>
+												<DatePicker id="inEndda" width="50%" placeholder=" " valueFormat="YYYY-MM-ddT00:00:00"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+									<f:formElements>
+										<f:FormElement label="{i18n>status}">
+											<f:fields>
+												<RadioButtonGroup columns="4" class="sapUiMediumMarginBottom" id="rbgReqStatus">
+													<buttons>
+														<RadioButton id="rbAll" text="{i18n>all}"/>
+														<RadioButton id="rbInProgress" text="{i18n>em_proc}"/>
+														<RadioButton id="rbFinished" text="{i18n>finalizada}"/>
+														<RadioButton id="rbCanceled" text="{i18n>cancelado}"/>
+													</buttons>
+												</RadioButtonGroup>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+					</VBox>
+					<!--REQUESTER / STOPPED IN-->
+					<VBox class="sapUiSmallMargin">
+						<f:SimpleForm id="formDataStatus" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="4"
+							labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" class="editableForm">
+							<f:content>
+								<core:Title text="{i18n>solic_por}"/>
+								<!--<Label text="Área"/>-->
+								<!--<Input value="{}" showSuggestion="true" showValueHelp="true" valueHelpRequest="onHelpRequestARH" id="ipAreaRequester"-->
+								<!--	change="onChangeRequester"/>-->
+								<Label text="{i18n>num_pessoal}"/>
+								<!--<Input id="ipPersonalNumberReq" enabled="true" showSuggestion="true" showValueHelp="true" valueHelpRequest="onHelpRequestEmployee"
+								change="onChangeRequester"/>-->
+								<Input id="ipPersonalNumberReq" enabled="true" showSuggestion="true" change="onChangeRequester"/>
+								<Label text="{i18n>nome}"/>
+								<Input id="txtPersonalNumberReq" enabled="false"/>
+								<!--<core:Title text="{i18n>parado_em}"/>-->
+								<!--<Label text="Área"/>-->
+								<!--<Input value="{}" showSuggestion="true" showValueHelp="true" valueHelpRequest="onHelpRequestARH" id="ipAreaStoppedIn"-->
+								<!--	change="onChangeStoppedIn"/>-->
+								<!--<Label text="{i18n>num_pessoal}"/>-->
+								<!--<Input id="ipPersonalNumberStoppedIn" value="{}" enabled="true" showSuggestion="true" showValueHelp="true" valueHelpRequest="onHelpRequestEmployee"
+								change="onChangeStoppedIn"/>-->
+								<!--<Input id="ipPersonalNumberStoppedIn" value="{}" enabled="true" showSuggestion="true" change="onChangeStoppedIn"/>-->
+								<!--<Label text="{i18n>nome}"/>-->
+								<!--<Input id="txtPersonalNumberStoppedIn" value="{}" enabled="false"/>-->
+								<core:Title text="Aprovado Por"/>
+								<Label text="Área"/>
+								<Label text="{i18n>num_pessoal}"/>
+								<!--<Input id="ipPersonalNumberApproved" value="{}" enabled="true" showSuggestion="true" showValueHelp="true" valueHelpRequest="onHelpRequestEmployee"
+								change="onChangeApproved"/>-->
+								<Input id="ipPersonalNumberApproved" value="{}" enabled="true" showSuggestion="true" change="onChangeApproved"/>
+								<Label text="{i18n>nome}"/>
+								<Input id="txtipPersonalNumberApproved" value="{}" enabled="false"/>
+							</f:content>
+						</f:SimpleForm>
+					</VBox>
+					<!--</f:content>-->
+					<!--</f:SimpleForm>-->
+					<!--</VBox>-->
+					<!--teste M-->
+					<!--<Table items="{ path: 'ET_COCKPIT>/', sorter: { path: 'REQUISITION_ID' } }">-->
+					<!--	<columns>-->
+					<!--		<Column>-->
+					<!--			<Text text="REQUISITION_ID"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Text text="PERNR_AFFECTED"/>-->
+					<!--		</Column>-->
+					<!--		<Column>-->
+					<!--			<Text text="ORGEH_AFFECTED"/>-->
+					<!--		</Column>-->
+					<!--	</columns>-->
+					<!--	<items>-->
+					<!--		<ColumnListItem vAlign="Middle">-->
+					<!--			<cells>-->
+					<!--				<Text text="{ET_COCKPIT>REQUISITION_ID}" wrapping="false"/>-->
+					<!--				<Text text="{ET_COCKPIT>PERNR_AFFECTED}" wrapping="false"/>-->
+					<!--				<Text text="{ET_COCKPIT>ORGEH_AFFECTED}"/>-->
+					<!--			</cells>-->
+					<!--		</ColumnListItem>-->
+					<!--	</items>-->
+					<!--</Table>-->
+				</content>
+				<!--PROCESS-->
+				<!--<VBox class="sapUiSmallMargin">-->
+				<!--<f:SimpleForm id="FormProcess" minWidth="1024" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" title="{i18n>processos}"-->
+				<!--labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1" class="editableForm">-->
+				<!--<f:content>-->
+				<t:Table id="tRequisition" selectionMode="None" class="sapUiTableTr" columnHeaderHeight="26" visibleRowCount="8" enableBusyIndicator="true"
+					rowHeight="26" enableCellFilter="{ui>/cellFilterOn}" rows="{/}" editable="false" enableColumnReordering="false" enableSelectAll="false">
+					<t:toolbar>
+						<Toolbar>
+							<Title id="tableTitle"/>
+							<ToolbarSpacer/>
+							<Button tooltip="{i18n>exportar_excel}" icon="sap-icon://excel-attachment" press="onPressExportExcel" id="btnExportExcel" enabled="false"/>
+						</Toolbar>
+					</t:toolbar>
+					<t:columns>
+						<!--REQUISITION NUMBER-->
+						<t:Column width="7rem" sortProperty="tRequisition&gt;REQUISITION_ID" name="REQUISITION_ID" label="{i18n>num_req}"
+							filterProperty="REQUISITION_ID">
+							<t:template>
+								<Text text="{REQUISITION_ID}"/>
+							</t:template>
+						</t:Column>
+						<!--SOLICITATION DATE-->
+						<t:Column width="8rem" label="{i18n>data_sol}" id="EW_SOL_DATE" name="BASE_DATE" filterProperty="BASE_DATE"
+							sortProperty="tRequisition>BASE_DATE">
+							<t:template>
+								<Text
+									text="{ path: 'BASE_DATE', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss.sssssss' }, pattern: 'dd/MM/yyyy' } }"/>
+								<!--<Text text="{path:'BASE_DATE', formatter:'painelControle.formatter.Formatter.date'}"/>-->
+							</t:template>
+						</t:Column>
+						<!--SOLICITATION TIME-->
+						<!--<t:Column width="8rem" label="{i18n>hora}" id="EW_SOL_TIME" name="C_EW_SOL_TIME" filterProperty="EW_SOL_TIME" sortProperty="tRequisition>EW_SOL_TIME">-->
+						<!--	<t:template>-->
+						<!--		<Text text="{TIME}"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--REQUISITION_TYPE-->
+						<t:Column width="13rem" label="{i18n>titulo}" id="EW_TITLE" name="REQUISITION_TYPE" filterProperty="REQUISITION_TYPE"
+							sortProperty="tRequisition>REQUISITION_TYPE">
+							<t:template>
+								<Link text="{path:'REQUISITION_TYPE', formatter:'painelControle.formatter.Formatter.tipo_req'}" href="{Link}" target="_blank"/>
+							</t:template>
+						</t:Column>
+						<!--REQUISITION_SUBTYPE-->
+						<t:Column width="13rem" label="SubProcesso" id="EW_SUBTITLE" name="REQUISITION_SUBTYPE" filterProperty="REQUISITION_SUBTYPE"
+							sortProperty="tRequisition>REQUISITION_SUBTYPE">
+							<t:template>
+								<Text text="{path:'REQUISITION_SUBTYPE', formatter:'painelControle.formatter.Formatter.subtipo_req'}"/>
+							</t:template>
+						</t:Column>
+						<!--EMPLOYEE NP-->
+						<t:Column width="10rem" label="NP Colaborador" id="EW_EMPLOYEE_NP" name="PERNR_AFFECTED" filterProperty="PERNR_AFFECTED"
+							sortProperty="tRequisition>PERNR_AFFECTED">
+							<t:template>
+								<Text text="{PERNR_AFFECTED}"/>
+							</t:template>
+						</t:Column>
+						<!--EMPLOYEE NAME-->
+						<t:Column width="19rem" label="{i18n>nome_colab}" id="EW_EMPLOYEE_NAME" name="NAME_AFFECTED" filterProperty="NAME_AFFECTED"
+							sortProperty="tRequisition>NAME_AFFECTED">
+							<t:template>
+								<Text text="{NAME_AFFECTED}"/>
+							</t:template>
+						</t:Column>
+						<!--MANAGER NAME-->
+						<t:Column width="19rem" label="Nome Gestor" id="EW_MANAGER_NAME" name="NAME_MANAGER_AFFECTED" filterProperty="NAME_MANAGER_AFFECTED"
+							sortProperty="tRequisition>NAME_MANAGER_AFFECTED">
+							<t:template>
+								<Text text="{NAME_MANAGER_AFFECTED}"/>
+							</t:template>
+						</t:Column>
+						<!--UO Colaborador-->
+						<t:Column width="25rem" label="UO Colaborador" id="EW_UO_EMP" name="ORGEH_AFFECTED" filterProperty="ORGEH_AFFECTED"
+							sortProperty="tRequisition>ORGEH_AFFECTED">
+							<t:template>
+								<Text text="{ORGEH_AFFECTED}"/>
+							</t:template>
+						</t:Column>
+						<!--ARH Colaborador-->
+						<t:Column width="25rem" label="Área de RH Colaborador" id="EW_ARH_EMP" name="ARH_AFFECTED" filterProperty="WERKS_AFFECTED"
+							sortProperty="tRequisition>WERKS_AFFECTED">
+							<t:template>
+								<Text text="{WERKS_AFFECTED}"/>
+							</t:template>
+						</t:Column>
+						<!--REQUESTER NAME-->
+						<t:Column width="19rem" label="Nome Solicitante" id="EW_REQUESTER_NAME" name="NAME_REQUESTER" filterProperty="NAME_REQUESTER"
+							sortProperty="tRequisition>NAME_REQUESTER">
+							<t:template>
+								<Text text="{NAME_REQUESTER}"/>
+							</t:template>
+						</t:Column>
+						<!--STOPPED_WITH-->
+						<t:Column width="19rem" label="Parado em" id="EW_STOPPED_WITH" name="STOPPED_WITH" filterProperty="STOPPED_WITH"
+							sortProperty="tRequisition>STOPPED_WITH">
+							<t:template>
+								<Text text="{STOPPED_WITH}"/>
+							</t:template>
+						</t:Column>
+						<!--1 APROVALS NAME-->
+						<t:Column width="19rem" label="Nome 1º Aprovador" id="EW_1APP_NAME" name="APPROVER_1" filterProperty="APPROVER_1"
+							sortProperty="tRequisition>APPROVER_1">
+							<t:template>
+								<Text text="{APPROVER_1}"/>
+							</t:template>
+						</t:Column>
+						<!--1 APROVALS DATA-->
+						<t:Column width="10rem" label="Data 1ª aprovação" id="EW_1APP_DATE" name="APPROVER_1_DATE" filterProperty="APPROVER_1_DATE"
+							sortProperty="tRequisition>APPROVER_1_DATE">
+							<t:template>
+								<Text
+									text="{ path: 'APPROVER_1_DATE', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss.sssssss' }, pattern: 'dd/MM/yyyy' } }"/>
+							</t:template>
+						</t:Column>
+						<!--1 APROVALS TIME-->
+						<t:Column width="10rem" label="Hora 1ª aprovação" id="EW_1APP_TIME" name="APPROVER_1_TIME" filterProperty="APPROVER_1_TIME"
+							sortProperty="tRequisition>APPROVER_1_TIME">
+							<t:template>
+								<Text text="{path:'APPROVER_1_TIME', formatter:'painelControle.formatter.Formatter.time'}"/>
+							</t:template>
+						</t:Column>
+						<!--2 APROVALS NAME-->
+						<t:Column width="19rem" label="Nome 2º Aprovador" id="EW_2APP_NAME" name="APPROVER_2" filterProperty="APPROVER_2"
+							sortProperty="tRequisition>APPROVER_2">
+							<t:template>
+								<Text text="{APPROVER_2}"/>
+							</t:template>
+						</t:Column>
+						<!--2 APROVALS DATA-->
+						<t:Column width="10rem" label="Data 2ª aprovação" id="EW_2APP_DATE" name="APPROVER_2_DATE" filterProperty="APPROVER_2_DATE"
+							sortProperty="tRequisition>APPROVER_2_DATE">
+							<t:template>
+								<Text
+									text="{ path: 'APPROVER_2_DATE', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss.sssssss' }, pattern: 'dd/MM/yyyy' } }"/>
+							</t:template>
+						</t:Column>
+						<!--2 APROVALS TIME-->
+						<t:Column width="10rem" label="Hora 2ª aprovação" id="EW_2APP_TIME" name="APPROVER_2_TIME" filterProperty="APPROVER_2_TIME"
+							sortProperty="tRequisition>APPROVER_2_TIME">
+							<t:template>
+								<Text text="{path:'APPROVER_2_TIME', formatter:'painelControle.formatter.Formatter.time'}"/>
+							</t:template>
+						</t:Column>
+						<!--3 APROVALS NAME-->
+						<t:Column width="19rem" label="Nome 3º Aprovador" id="EW_3APP_NAME" name="APPROVER_3" filterProperty="APPROVER_3"
+							sortProperty="tRequisition>APPROVER_3">
+							<t:template>
+								<Text text="{APPROVER_3}"/>
+							</t:template>
+						</t:Column>
+						<!--3 APROVALS DATA-->
+						<t:Column width="10rem" label="Data 3ª aprovação" id="EW_3APP_DATE" name="APPROVER_3_DATE" filterProperty="APPROVER_3_DATE"
+							sortProperty="tRequisition>APPROVER_3_DATE">
+							<t:template>
+								<Text
+									text="{ path: 'APPROVER_3_DATE', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss.sssssss' }, pattern: 'dd/MM/yyyy' } }"/>
+							</t:template>
+						</t:Column>
+						<!--3 APROVALS TIME-->
+						<t:Column width="10rem" label="Hora 3ª aprovação" id="EW_3APP_TIME" name="APPROVER_3_TIME" filterProperty="APPROVER_3_TIME"
+							sortProperty="tRequisition>APPROVER_3_TIME">
+							<t:template>
+								<Text text="{path:'APPROVER_3_TIME', formatter:'painelControle.formatter.Formatter.time'}"/>
+							</t:template>
+						</t:Column>
+						<!--4 APROVALS NAME-->
+						<t:Column width="19rem" label="Nome 4º Aprovador" id="EW_4APP_NAME" name="APPROVER_4" filterProperty="APPROVER_4"
+							sortProperty="tRequisition>APPROVER_4">
+							<t:template>
+								<Text text="{APPROVER_4}"/>
+							</t:template>
+						</t:Column>
+						<!--4 APROVALS DATA-->
+						<t:Column width="10rem" label="Data 4ª aprovação" id="EW_4APP_DATE" name="APPROVER_4_DATE" filterProperty="EW_REQUESTER_NAME"
+							sortProperty="tRequisition>APPROVER_4_DATE">
+							<t:template>
+								<Text
+									text="{ path: 'APPROVER_4_DATE', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss.sssssss' }, pattern: 'dd/MM/yyyy' } }"/>
+							</t:template>
+						</t:Column>
+						<!--4 APROVALS TIME-->
+						<t:Column width="10rem" label="Hora 4ª aprovação" id="EW_4APP_TIME" name="APPROVER_4_TIME" filterProperty="APPROVER_4_TIME"
+							sortProperty="tRequisition>APPROVER_4_TIME">
+							<t:template>
+								<Text text="{path:'APPROVER_4_TIME', formatter:'painelControle.formatter.Formatter.time'}"/>
+							</t:template>
+						</t:Column>
+						<!--DISAPPROVED BY-->
+						<t:Column width="19rem" label="{i18n>reprovado_por}" id="EW_DISAPPROVED_NAME" name="DISAPPROVED_NAME" filterProperty="DISAPPROVED_NAME"
+							sortProperty="tRequisition>DISAPPROVED_NAME">
+							<t:template>
+								<Text text="{DISAPPROVED_NAME}"/>
+							</t:template>
+						</t:Column>						
+						<!--DATE OF DISAPPROVAL-->
+						<t:Column width="10rem" label="{i18n>data_reprovacao}" id="EW_DISAP_DATE" name="DISAPPROVED_DATE" filterProperty="DISAPPROVED_DATE"
+							sortProperty="tRequisition>DISAPPROVED_DATE">
+							<t:template>
+								<Text
+									text="{ path: 'DISAPPROVED_DATE', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss.sssssss' }, pattern: 'dd/MM/yyyy' } }"/>
+							</t:template>
+						</t:Column>						
+						<!--TIME OF DISAPPROVAL-->
+						<t:Column width="10rem" label="{i18n>hora_reprovacao}" id="EW_DISAP_TIME" name="DISAPPROVED_TIME" filterProperty="DISAPPROVED_TIME"
+							sortProperty="tRequisition>DISAPPROVED_TIME">
+							<t:template>
+								<Text text="{path:'DISAPPROVED_TIME', formatter:'painelControle.formatter.Formatter.time'}"/>
+							</t:template>
+						</t:Column>						
+						<!--EFFECTIVE DATE-->
+						<t:Column width="8rem" label="{i18n>data_efetiv}" id="EW_EFFECT_DATE" name="EFFECTIVE_DATE" filterProperty="EFFECTIVE_DATE"
+							sortProperty="tRequisition>EFFECTIVE_DATE">
+							<t:template>
+								<Text
+									text="{ path: 'EFFECTIVE_DATE', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss.sssssss' }, pattern: 'dd/MM/yyyy' } }"/>
+							</t:template>
+						</t:Column>
+						<!--EFFECTIVE TIME-->
+						<!--<t:Column width="8rem" label="{i18n>hora}" id="EW_EFFECT_TIME" name="C_EW_EFFECT_TIME" filterProperty="EW_EFFECT_TIME"-->
+						<!--	sortProperty="tRequisition>EW_EFFECT_TIME">-->
+						<!--	<t:template>-->
+						<!--		<Text text="{EFFECTIVE_TIME}"/>-->
+						<!--	</t:template>-->
+						<!--</t:Column>-->
+						<!--Status-->
+						<t:Column width="8rem" label="Status" id="EW_REQUESTER_USR" name="STATUS" filterProperty="STATUS" sortProperty="tRequisition>STATUS">
+							<t:template>
+								<Text text="{path:'STATUS', formatter:'painelControle.formatter.Formatter.status'}"/>
+							</t:template>
+						</t:Column>
+					</t:columns>
+				</t:Table>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

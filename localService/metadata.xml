@@ -1,0 +1,135 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZODHR_SS_RESP_DIGITAL_SRV" xml:lang="en" sap:schema-version="1 ">
+            <EntityType Name="E_APPROVALS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="REQUISITION_ID"/>
+                </Key>
+                <Property Name="REQUISITION_ID" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="REQUISITION_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BASE_DATE" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="DATA_BASE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TIME" Type="Edm.Time" Nullable="false" Precision="0" sap:label="TIME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUISITION_TYPE" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="REQUISITION_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUISITION_SUBTYPE" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="REQUISITION_SUBTYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="POSITION" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Num8" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PERNR_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="PERNR_AFFECTED" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAME_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MANAGER_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="MANAGER_AFFECTED" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PERNR_REQUESTER" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAME_REQUESTER" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EFFECTIVE_DATE" Type="Edm.DateTime" Precision="7" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MANAGER_NAME" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ORGEH_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Org. Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ORGEH_AFFECTED_DESC" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQ_TYPE_DESC" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQ_SUBT_DESC" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LINK" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="LInk" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="E_APPROVALS_HEADER" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="IM_LOGGED_IN"/>
+                    <PropertyRef Name="IM_SEARCH"/>
+                </Key>
+                <Property Name="IM_LOGGED_IN" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="IM_LOGGED_IN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IM_SEARCH" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Single-Character Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IM_SUB_SEARCH" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Single-Character Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="APPROVALS" Relationship="ZODHR_SS_RESP_DIGITAL_SRV.A_APPROVALS" FromRole="FromRole_A_APPROVALS" ToRole="ToRole_A_APPROVALS"/>
+            </EntityType>
+            <EntityType Name="E_LOG" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="REQUISITION_ID"/>
+                </Key>
+                <Property Name="MANDT" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Client" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUISITION_ID" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="REQUISITION_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SEQUENCE" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="SEQUENCE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FIELD" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="FIELD" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALUE" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="VALUE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="E_COCKPIT" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="REQUISITION_TYPE"/>
+                    <PropertyRef Name="REQUISITION_SUBTYPE"/>
+                </Key>
+                <Property Name="REQUESTER_AREA" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Personnel area" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUESTER_PERNR" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STOPPED_AREA" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Personnel area" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STOPPED_PERNR" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVED_PERNR" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUISITION_TYPE" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="REQUISITION_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUISITION_SUBTYPE" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="REQUISITION_SUBTYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUISITION_ID" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="REQUISITION_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WERKS" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Personnel area" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ORGEH" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Org. Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BEGDA" Type="Edm.DateTime" Precision="7" sap:label="Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ENDDA" Type="Edm.DateTime" Precision="7" sap:label="End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STATUS" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="STATUS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="COCKPIT" Relationship="ZODHR_SS_RESP_DIGITAL_SRV.A_COCKPIT" FromRole="FromRole_A_COCKPIT" ToRole="ToRole_A_COCKPIT"/>
+            </EntityType>
+            <EntityType Name="E_RET_LIST_REQ" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="REQUISITION_ID"/>
+                </Key>
+                <Property Name="REQUISITION_ID" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="REQUISITION_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUISITION_TYPE" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="REQUISITION_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUISITION_SUBTYPE" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="REQUISITION_SUBTYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BASE_DATE" Type="Edm.DateTime" Precision="7" sap:label="BASE_DATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TIME" Type="Edm.Time" Precision="0" sap:label="TIME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PERNR_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="PERNR_AFFECTED" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ORGEH_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="ORGEH_AFFECTED" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MANAGER_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="MANAGER_AFFECTED" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WERKS_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Personnel area" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PERNR_APPROVER" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="PERNR_APPROVER" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STATUS" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="STATUS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PERNR_REQUESTER" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REQUESTER_TYPE" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="REQUESTER_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAME_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAME_MANAGER_AFFECTED" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAME_REQUESTER" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EFFECTIVE_DATE" Type="Edm.DateTime" Precision="7" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EFFECTIVE_TIME" Type="Edm.Time" Precision="0" sap:label="Field of type TIMS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_1" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_1_DATE" Type="Edm.String" MaxLength="8" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_1_TIME" Type="Edm.Time" Precision="0" sap:label="Field of type TIMS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_2" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_2_DATE" Type="Edm.String" MaxLength="8" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_2_TIME" Type="Edm.Time" Precision="0" sap:label="Field of type TIMS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_3" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_3_DATE" Type="Edm.String" MaxLength="8" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_3_TIME" Type="Edm.Time" Precision="0" sap:label="Field of type TIMS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_4" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_4_DATE" Type="Edm.String" MaxLength="8" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="APPROVER_4_TIME" Type="Edm.Time" Precision="0" sap:label="Field of type TIMS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="A_APPROVALS" sap:content-version="1">
+                <End Type="ZODHR_SS_RESP_DIGITAL_SRV.E_APPROVALS_HEADER" Multiplicity="0..1" Role="FromRole_A_APPROVALS"/>
+                <End Type="ZODHR_SS_RESP_DIGITAL_SRV.E_APPROVALS" Multiplicity="*" Role="ToRole_A_APPROVALS"/>
+            </Association>
+            <Association Name="A_COCKPIT" sap:content-version="1">
+                <End Type="ZODHR_SS_RESP_DIGITAL_SRV.E_COCKPIT" Multiplicity="0..1" Role="FromRole_A_COCKPIT"/>
+                <End Type="ZODHR_SS_RESP_DIGITAL_SRV.E_RET_LIST_REQ" Multiplicity="*" Role="ToRole_A_COCKPIT"/>
+            </Association>
+            <EntityContainer Name="ZODHR_SS_RESP_DIGITAL_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ET_APPROVALS_HEADER" EntityType="ZODHR_SS_RESP_DIGITAL_SRV.E_APPROVALS_HEADER" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_LOG" EntityType="ZODHR_SS_RESP_DIGITAL_SRV.E_LOG" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_COCKPIT" EntityType="ZODHR_SS_RESP_DIGITAL_SRV.E_COCKPIT" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_RET_LIST" EntityType="ZODHR_SS_RESP_DIGITAL_SRV.E_RET_LIST_REQ" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ET_APPROVALS" EntityType="ZODHR_SS_RESP_DIGITAL_SRV.E_APPROVALS" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="AT_COCKPIT" Association="ZODHR_SS_RESP_DIGITAL_SRV.A_COCKPIT" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ET_COCKPIT" Role="FromRole_A_COCKPIT"/>
+                    <End EntitySet="ET_RET_LIST" Role="ToRole_A_COCKPIT"/>
+                </AssociationSet>
+                <AssociationSet Name="AT_APPROVALSSet" Association="ZODHR_SS_RESP_DIGITAL_SRV.A_APPROVALS" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ET_APPROVALS_HEADER" Role="FromRole_A_APPROVALS"/>
+                    <End EntitySet="ET_APPROVALS" Role="ToRole_A_APPROVALS"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZODHR_SS_RESP_DIGITAL_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZODHR_SS_RESP_DIGITAL_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

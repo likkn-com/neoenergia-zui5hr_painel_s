@@ -1,0 +1,59 @@
+{
+	"RHProcessRequireMyAttention": [{
+			"EW_REQ_NUM": "00000001",
+			"EW_SOL_DATE": "01.01.2017",
+			"EW_SOL_TIME": "08:00:00",
+			"EW_PROCESS": "Alteração Funcional",
+			"EW_SUBPROCESS": "Alteração Salarial",
+			"EW_POSITION": "01928346",
+			"EW_EMPLOYEE_PERSNUMBER": "87654981",
+			"EW_EMPLOYEE_NAME": "José Pereira Silva",
+			"EW_MANAGER_PERSNUMBER": "60021674",
+			"EW_REQUESTER_NAME": "Maria Siqueira Costa",
+			"EW_EFFECT_DATE": "05.01.2017"
+		}
+	],
+
+	"RHProcessInProgress": [{
+			"EW_REQ_NUM": "00000002",
+			"EW_SOL_DATE": "01.02.2017",
+			"EW_SOL_TIME": "07:15:04",
+			"EW_PROCESS": "Alteração Funcional",
+			"EW_SUBPROCESS": "Promoção",
+			"EW_POSITION": "43556621",
+			"EW_EMPLOYEE_PERSNUMBER": "09967317",
+			"EW_EMPLOYEE_NAME": "Marcelo Silva",
+			"EW_MANAGER_PERSNUMBER": "60021234",
+			"EW_REQUESTER_NAME": "Maria Lívia Costa",
+			"EW_EFFECT_DATE": "05.01.2017"
+		},
+
+		{
+			"EW_REQ_NUM": "00000003",
+			"EW_SOL_DATE": "02.03.2017",
+			"EW_SOL_TIME": "09:45:00",
+			"EW_PROCESS": "Manutenção Cadastral",
+			"EW_SUBPROCESS": "Endereço",
+			"EW_POSITION": "",
+			"EW_EMPLOYEE_PERSNUMBER": "87198003",
+			"EW_EMPLOYEE_NAME": "Amanda Alcretini",
+			"EW_MANAGER_PERSNUMBER": "87890124",
+			"EW_REQUESTER_NAME": "Paulo Souza Cruz",
+			"EW_EFFECT_DATE": "26.01.2017"
+		}
+	],
+
+	"RHProcessFinished": [{
+		"EW_REQ_NUM": "00000004",
+		"EW_SOL_DATE": "01.02.2017",
+		"EW_SOL_TIME": "10:26:28",
+		"EW_PROCESS": "Estrutura Organizacional",
+		"EW_SUBPROCESS": "Criação Posição",
+		"EW_POSITION": "7654872",
+		"EW_EMPLOYEE_PERSNUMBER": "77610093",
+		"EW_EMPLOYEE_NAME": "Rodrigo Souza e Silva",
+		"EW_MANAGER_PERSNUMBER": "27263851",
+		"EW_REQUESTER_NAME": "Catarina Maria Silva",
+		"EW_EFFECT_DATE": "05.04.2017"
+	}]
+}

@@ -1,0 +1,45 @@
+{
+	"RequesterUsr": [{
+		"User"   : "USR00001",
+		"Name"   : "Usuário 1 - Solicitado Por",
+		"PersNum": "12341234"
+	}, {
+		"User"   : "USR00002",
+		"Name"   : "Usuário 2 - Solicitado Por",
+		"PersNum": "56785678"
+	}, {
+		"User"   : "USR00003",
+		"Name"   : "Usuário 3 - Solicitado Por",
+		"PersNum": "78907890"
+	}, {
+		"User"   : "USR00004",
+		"Name"   : "Usuário 4 - Solicitado Por",
+		"PersNum": "09870987"
+	}, {
+		"User"   : "USR00005",
+		"Name"   : "Usuário 5 - Solicitado Por",
+		"PersNum": "12345678"
+	}],
+
+	"StoppedInUser": [{
+		"User"   : "USR00001",
+		"Name"   : "Usuário 1 - Parado Em",
+		"PersNum": "12341234"
+	}, {
+		"User"   : "USR00002",
+		"Name"   : "Usuário 2 - Parado Em",
+		"PersNum": "56785678"
+	}, {
+		"User"   : "USR00003",
+		"Name"   : "Usuário 3 - Parado Em",
+		"PersNum": "78907890"
+	}, {
+		"User"   : "USR00004",
+		"Name"   : "Usuário 4 - Parado Em",
+		"PersNum": "09870987"
+	}, {
+		"User"   : "USR00005",
+		"Name"   : "Usuário 5 - Parado Em",
+		"PersNum": "12345678"
+	}]
+}

@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<SelectDialog
+		title="Unidade Organizacional"
+		class="sapUiPopupWithPadding"
+		items="{ET_SH_UO>/}" 
+		search="_handleValueHelpSearch"
+		confirm="_handleValueHelpClose"
+		cancel="_handleValueHelpClose"
+		app:description="ORGTX"
+		app:lblText="txtDependentNationality"
+		app:input="inOrg"
+		app:getParam="Title">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{ET_SH_UO>ORGEH}"
+			description="{ET_SH_UO>ORGTX}" />
+	</SelectDialog>  
+</core:FragmentDefinition>
